@@ -2,7 +2,7 @@
 <html>
     <head>
         <title>Example Page on Threat Modeling</title>
-
+        
         <script>
             /** JS Code **/
         </script>
@@ -65,6 +65,11 @@
                 margin: 1%;
                 height: 150px;
             }
+            #text_small, #text_larger{
+                width: 50px;
+                height: 20px;
+                border: 2px solid black;
+            }
             
                         /* smaller than 1024 pixels */
             @media screen and (max-width: 1024px) {
@@ -89,7 +94,7 @@
         </style>
 
     </head>
-    <body>
+    <body id="bodytext">
         <div id="container">
             <!--Inline JS code-->
             <header onClick="alert('hello')">
@@ -102,11 +107,20 @@
             <footer>
                 <div class="footer_box"></div>
                 <div class="footer_box"></div>
-                <div class="footer_box"></div>
+                <div class="footer_box">
+                    <div id="text_small">16px</div>
+                    <div id="text_larger">32px</div>
+                </div>
             </footer>
         </div><!--Closing container-->
         <script>
-
+            
+            document.getElementById('text_small').addEventListener('click', ()=>{
+                document.getElementById('bodytext').style.fontSize = '16px';
+            })
+            document.getElementById('text_larger').addEventListener('click', ()=>{
+                document.getElementById('bodytext').style.fontSize = '32px';
+            })
         </script>
     </body>
 </html>

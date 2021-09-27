@@ -7,9 +7,12 @@ const port = process.env.PORT || 3000
 const server = http.createServer((req, res) => {
 
     if(req.url == "/" && req.method == "GET"){
-        res.setHeader('Content-Security-Policy', "")
-        res.statusCode = 200;
         res.setHeader('Content-Type', 'text/html');
+        //Content Security Policy
+        res.setHeader("Content-Security-Policy", "default-src 'self'");
+       
+        res.statusCode = 200;
+        
         fs.readFile('./gridexample.html', function(err, data){
             res.write(data);
             res.end();

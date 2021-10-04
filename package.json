@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -16,5 +17,13 @@
   "bugs": {
     "url": "https://github.com/instructorc/cs484_fall2021ex/issues"
   },
-  "homepage": "https://github.com/instructorc/cs484_fall2021ex#readme"
+  "homepage": "https://github.com/instructorc/cs484_fall2021ex#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-handlebars": "^5.3.4",
+    "hbs": "^4.1.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.13"
+  }
 }

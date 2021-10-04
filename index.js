@@ -1,33 +1,52 @@
-const http = require('http')
-const fs = require('fs');
+const express = require('express')
+const app = express()
+const port = 3000
+
+//Middleware
+
+//Handlebars
+app.set('views', './views');
+app.set('view engine', 'hbs');
 
 
-const port = process.env.PORT || 3000
+// parse application/json
+app.use(express.json());
 
-const server = http.createServer((req, res) => {
+// parse the name/value pair payload into array of values.
+app.use(express.urlencoded());
 
-    if(req.url == "/" && req.method == "GET"){
-        res.setHeader('Content-Type', 'text/html');
-        //Content Security Policy
-        res.setHeader("Content-Security-Policy", "default-src 'self'");
-       
-        res.statusCode = 200;
-        
-        fs.readFile('./gridexample.html', function(err, data){
-            res.write(data);
-            res.end();
-        });
-      
-    }else if(req.url =="/aboutus" && req.method == "GET"){
-        res.write("About Us Page");
-        res.end();
-    }else{
-        res.write('404 page');
-        res.end();
-    }
+//Simple get request and sending back a HTML file
+app.get('/', (req, res) => {
 
+  res.render('index',{name : "Instructor"});
 })
 
-server.listen(port, () => {
-  console.log(`Server running at port ${port}`)
+//Simple get request and sending back a HTML file
+app.get('/json', (req, res) => {
+
+  var userData = {
+    "user_name" : "aUser",
+    "password" : "password01"
+  };
+  res.json(userData);
+})
+
+app.post('/info', (req, res) =>{
+  const lastName = req.body.lname;
+  const firstName = req.body.fname;
+  console.log(lastName + " , " + firstName );
+  res.send(`<ul> <li>First Name: ${firstName}</li>  <li>Last Name: ${lastName}</li></ul>`);
+})
+
+//routing with parameters
+app.get('/welcome/:userName', (req, res) => {
+
+    res.send(`<h1> Welcome ${req.params.userName}`);
+
+}) 
+
+
+
+app.listen(port, () => {
+  console.log(`Example app listening at http://localhost:${port}`)
 })

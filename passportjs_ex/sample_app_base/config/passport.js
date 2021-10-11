@@ -1,5 +1,4 @@
 const LocalStrategy = require('passport-local').Strategy;
-var sqlite3 = require('sqlite3').verbose()
 let dataStore = require('../users.json');
 
 
@@ -12,15 +11,32 @@ passport.use(new LocalStrategy({
 }, function(username, password, done) {
 	console.log(username);
 	//Search users.json file to see if user exist
+	'use strict';
+
+    let users = JSON.parse(dataStore);
+    console.log(users);
+
+    for (var index = 0; index < users.length; ++index) {
+
+        var user = users[index];
+       
+        if(user.email == email && user.password == password){
+			
+          done(null, user);
+        }
+        else{
+          done(null, false);
+        }
+    }
     
 }));
 
 passport.serializeUser(function(user, done) {
-	done(null, user); 
+	done(null, user.id); 
 });
 
 passport.deserializeUser(function(user, done) {
-	done(null, user); //you can access with req.user
+	done(null, user.id); //you can access with req.user
 });
 
 }

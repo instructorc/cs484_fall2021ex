@@ -1,5 +1,5 @@
 const LocalStrategy = require('passport-local').Strategy;
-let dataStore = require('../users.json');
+let users = require('../users.json');
 
 
 module.exports = function(passport) {
@@ -11,16 +11,16 @@ passport.use(new LocalStrategy({
 }, function(username, password, done) {
 	console.log(username);
 	//Search users.json file to see if user exist
-	'use strict';
 
-    let users = JSON.parse(dataStore);
+
+    //let users = JSON.parse(dataStore);
     console.log(users);
 
     for (var index = 0; index < users.length; ++index) {
 
         var user = users[index];
-       
-        if(user.email == email && user.password == password){
+       console.log(user.email);
+        if(user.email == username && user.password == password){
 			
           done(null, user);
         }
@@ -32,11 +32,11 @@ passport.use(new LocalStrategy({
 }));
 
 passport.serializeUser(function(user, done) {
-	done(null, user.id); 
+	done(null, user); 
 });
 
 passport.deserializeUser(function(user, done) {
-	done(null, user.id); //you can access with req.user
+	done(null, user); //you can access with req.user
 });
 
 }

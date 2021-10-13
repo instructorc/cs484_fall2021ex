@@ -9,6 +9,7 @@ var loginRouter = require('./routes/login');
 var createAccountRouter = require('./routes/createAccount');
 var submitRouter = require('./routes/submit');
 var loginSubmitRouter = require('./routes/loginSubmit');
+var dashboardRouter = require('./routes/dashboard.js');
 
 var app = express();
 
@@ -39,14 +40,18 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', loginRouter);
-app.use('/createAccount', createAccountRouter);
-app.use('/submit', submitRouter);
-app.use('/loginSubmit', loginSubmitRouter);
 
 //Passport middleware
 app.use(passport.initialize());
 app.use(passport.session());
+
+app.use('/', loginRouter);
+app.use('/createAccount', createAccountRouter);
+app.use('/submit', submitRouter);
+app.use('/loginSubmit', loginSubmitRouter);
+app.use('/dashboard', dashboardRouter);
+
+
 
 
 // catch 404 and forward to error handler

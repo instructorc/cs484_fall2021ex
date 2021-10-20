@@ -1,0 +1,25 @@
+{
+	"name": "Maggie",
+	"age": 21,
+	"term": "Fall 2019",
+	"expected_graduation": "Spring 2022",
+	"courses": [
+		{
+			"course": "CS484",
+			"start_time": "9am",
+			"student_count": 45
+		},
+		{
+			"course": "CS599",
+			"start_time": "11:30am",
+			"student_count": 42
+		},
+		{
+			"course": "CS401",
+			"start_time": "2:30am",
+			"student_count": 69
+		}
+	]
+	
+	
+}

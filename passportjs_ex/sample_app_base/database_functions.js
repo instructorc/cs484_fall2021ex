@@ -15,9 +15,9 @@ let db = new sqlite3.Database('./database/task.sqlite', (err) => {
 });
 
 //Create a User
-let createUser = () =>{
+let createUser = (id, email, password) =>{
 	var createUserSql ='INSERT INTO USER (user_id, user_email,user_password) VALUES (?,?,?)'
-	var params =[null, "cujo@uic.edu", "asdfjkl;"];
+	var params =[null, email, password];
 
 	db.run(createUserSql, params, function(err){
 		if (err){
@@ -28,4 +28,4 @@ let createUser = () =>{
 	});
 }
 
-createUser();
+module.exports = {createUser};

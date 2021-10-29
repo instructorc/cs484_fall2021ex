@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var fs = require('fs');
+var databaseFunction = require("../database_functions.js");
 
 
 /* GET home page. */
@@ -27,6 +28,9 @@ router.post('/', function(req, res, next) {
             email: email,
             password: password
         }];
+
+        databaseFunction.createUser(users[0].id, users[0].email, users[0].password);
+
         
         let data = JSON.stringify(users);
         fs.writeFileSync('users.json', data);

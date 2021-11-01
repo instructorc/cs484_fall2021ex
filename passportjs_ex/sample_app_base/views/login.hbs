@@ -34,11 +34,11 @@
 			<div class="wrap-login100">
 				<form method="POST" action="/loginSubmit" class="login100-form validate-form">
 					<span class="login100-form-title p-b-26">
-						Chuck Norris Joke
+						Random Qoute
 					</span>
-					{{ data.value }}
+					{{ data.text }}
 					<span class="login100-form-title p-b-48">
-						<img src="{{data.icon_url}}">
+						{{data.author}}
 					</span>
 
 					<div class="wrap-input100 validate-input" data-validate = "Valid email is: a@b.c">

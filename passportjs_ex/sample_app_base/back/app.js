@@ -8,6 +8,7 @@ const passport = require('passport');
 var loginRouter = require('./routes/login');
 var createAccountRouter = require('./routes/createAccount');
 var submitRouter = require('./routes/submit');
+var taskRouter = require('./routes/standard_task');
 var loginSubmitRouter = require('./routes/loginSubmit');
 var dashboardRouter = require('./routes/dashboard.js');
 
@@ -50,6 +51,7 @@ app.use('/createAccount', createAccountRouter);
 app.use('/submit', submitRouter);
 app.use('/loginSubmit', loginSubmitRouter);
 app.use('/dashboard', dashboardRouter);
+app.use('/input_task', taskRouter);
 
 
 
